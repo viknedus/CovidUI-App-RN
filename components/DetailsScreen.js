@@ -1,14 +1,24 @@
 import React from "react";
-import { View, Button, Text } from "react-native";
+import { View, Button, Text, StyleSheet } from "react-native";
+// local
+import { TextInput } from "react-native-paper";
+// dependencies
 import { SafeAreaView } from "react-native-safe-area-context";
 
 function DetailsScreen({ navigation }) {
   return (
-    <SafeAreaView
-      style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
-    >
-      <View></View>
-      <Text>Details Screen</Text>
+    <SafeAreaView style={styles.container}>
+      <View>
+        <Text>Hi, Stranger</Text>
+        <Text>Welcome to my youtube channel</Text>
+      </View>
+      {/* <TextInput style={styles.input} placeholder="search" inlineImageLeft="" /> */}
+      <TextInput
+        label="Search"
+        right={<TextInput.Icon name="arrow-right-box" />}
+      />
+      <Text>Symptoms</Text>
+
       <Button
         title="Go to Details... again"
         onPress={() => navigation.push("Details")}
@@ -18,4 +28,19 @@ function DetailsScreen({ navigation }) {
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+  },
+});
+
 export default DetailsScreen;
