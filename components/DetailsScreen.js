@@ -5,62 +5,31 @@ import {
   Text,
   StyleSheet,
   FlatList,
-  SectionList,
   Image,
+  Dimensions,
 } from "react-native";
 // local
 import { TextInput } from "react-native-paper";
 // dependencies
 import { SafeAreaView } from "react-native-safe-area-context";
 
-// section data
-const SECTIONS = {
-  title: "Made for you",
-  // horizontal: true,
-  data: [
-    {
-      key: "1",
-      text: "Item text 1",
-      uri: "https://picsum.photos/id/1/200",
-    },
-    {
-      key: "2",
-      text: "Item text 2",
-      uri: "https://picsum.photos/id/10/200",
-    },
-
-    {
-      key: "3",
-      text: "Item text 3",
-      uri: "https://picsum.photos/id/1002/200",
-    },
-    {
-      key: "4",
-      text: "Item text 4",
-      uri: "https://picsum.photos/id/1006/200",
-    },
-    {
-      key: "5",
-      text: "Item text 5",
-      uri: "https://picsum.photos/id/1008/200",
-    },
-  ],
-};
-
-const ListItem = ({ item }) => {
-  return (
-    <View style={styles.item}>
-      <Image
-        source={{
-          uri: item.uri,
-        }}
-        style={styles.itemPhoto}
-        resizeMode="cover"
-      />
-      <Text style={styles.itemText}>{item.text}</Text>
-    </View>
-  );
-};
+const _renderItem = ({ item }) => (
+  <View
+    style={{
+      padding: 16,
+      backgroundColor: "blue",
+      height: 100,
+      width: Dimensions.get("window").width,
+      borderRadius: 10,
+    }}
+  >
+    <Text style={{ color: "white" }}>{item.key}</Text>
+    <Image
+      style={{ width: 50, height: 50 }}
+      source={require("../assets/favicon.png")}
+    />
+  </View>
+);
 
 function DetailsScreen({ navigation }) {
   return (
@@ -75,26 +44,15 @@ function DetailsScreen({ navigation }) {
         right={<TextInput.Icon name="arrow-right-box" />}
       />
       <Text>Symptoms</Text>
-      <SectionList
-        contentContainerStyle={{ paddingHorizontal: 10 }}
-        stickySectionHeadersEnabled={false}
-        sections={SECTIONS}
-        renderSectionHeader={({ section }) => (
-          <>
-            <Text style={styles.sectionHeader}>{section.title}</Text>
-            <FlatList
-              horizontal
-              data={section.data}
-              renderItem={({ item }) => <ListItem item={item} />}
-              showsHorizontalScrollIndicator={false}
-            />
-          </>
-        )}
-        renderItem={({ item, section }) => {
-          return null;
-          // return <ListItem item={item} />;
-        }}
-      />
+      <View style={{}}>
+        <FlatList
+          data={[{ key: "1" }, { key: "2" }, { key: "3" }]}
+          renderItem={_renderItem}
+          horizontal={true}
+          showsHorizontalScrollIndicator={true}
+          ItemSeparatorComponent={() => <View style={{ margin: 4 }} />}
+        />
+      </View>
 
       <Button
         title="Go to Details... again"
