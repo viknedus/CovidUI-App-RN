@@ -19,7 +19,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 const _renderItem = ({ item }) => (
   <View>
     <LinearGradient
-      style={styles.symptomsView}
+      style={styles.symptoms__view}
       colors={["rgba(4, 26, 84, 1) 0%)", "rgba(82, 36, 36, 0) 100%)"]}
     >
       <Text style={{ color: "white" }}>{item.key}</Text>
@@ -34,7 +34,7 @@ const _renderItem = ({ item }) => (
 const _renderItems1 = ({ item }) => (
   <View>
     <LinearGradient
-      style={styles.requirementsView}
+      style={styles.requirements__view}
       colors={["rgba(43, 14, 14, 1) 0%)", "rgba(82, 36, 36, 0) 100%)"]}
     >
       <Image
@@ -49,39 +49,41 @@ function DetailsScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
-        <View style={{ marginBottom: 10 }}>
-          <Text style={{ marginBottom: 10 }}>Hi, Stranger</Text>
-          <Text>Welcome to my youtube channel</Text>
+        <View style={styles.title__view}>
+          <Text style={styles.title__text}>Hi, Stranger</Text>
+          <Text style={styles.title__description}>
+            Welcome to my youtube channel
+          </Text>
         </View>
         {/* <TextInput style={styles.input} placeholder="search" inlineImageLeft="" /> */}
         <TextInput
           label="Search"
           right={<TextInput.Icon name="arrow-right-box" />}
-          style={{ marginBottom: 10 }}
+          style={styles.search__view}
         />
-        <Text style={{ marginBottom: 10 }}>Symptoms</Text>
-        <View style={{ marginBottom: 10 }}>
+
+        <Text style={styles.section__titles}>Symptoms</Text>
+        <View style={{ margin: 10 }}>
           <FlatList
             data={[{ key: "1" }, { key: "2" }, { key: "3" }]}
             renderItem={_renderItem}
             horizontal={true}
             alwaysBounceHorizontal
+            showsHorizontalScrollIndicator={false}
             ItemSeparatorComponent={() => <View style={{ margin: 6 }} />}
           />
         </View>
-        <View style={styles.viewframe1}>
+        <View style={styles.frame1__view}>
           <LinearGradient
-            style={styles.frame1}
-            colors={["rgba(43, 84, 4, 31) 0%)", "rgba(82, 36, 36, 0) 100%)"]}
+            style={styles.frame1__lineargradientview}
+            colors={["rgba(43, 84, 4, 31) 70%)", "rgba(82, 36, 36, 0) 50%)"]}
           >
             <View>
-              <Text
-                style={{ color: "white", fontWeight: "bold", marginBottom: 30 }}
-              >
+              <Text style={styles.frame1__text}>
                 Stay at home to stop corona virus
               </Text>
               <Pressable style={styles.pressable}>
-                <Text style={styles.buttonText}>Know More</Text>
+                <Text style={styles.button__text}>Know More</Text>
               </Pressable>
             </View>
 
@@ -92,17 +94,18 @@ function DetailsScreen({ navigation }) {
           </LinearGradient>
         </View>
 
-        <Text style={{ marginBottom: 10 }}>Requirements</Text>
-        <View style={{ marginBottom: 30 }}>
+        <Text style={styles.section__titles}>Requirements</Text>
+        <View style={{ margin: 20 }}>
           <FlatList
             data={[{ key: "1" }, { key: "2" }, { key: "3" }, { key: "4" }]}
             renderItem={_renderItems1}
             horizontal={true}
             alwaysBounceHorizontal
+            showsHorizontalScrollIndicator={false}
             ItemSeparatorComponent={() => <View style={{ margin: 8 }} />}
           />
         </View>
-        <View style={styles.buttonsview}>
+        <View style={styles.buttons__view}>
           <Button
             title="Go to Details... again"
             onPress={() => navigation.push("Details")}
@@ -123,7 +126,28 @@ const styles = StyleSheet.create({
     flex: 1,
     width: Dimensions.get("window").width,
   },
-  symptomsView: {
+  title__view: {
+    margin: 20,
+    alignItems: "center",
+  },
+  title__text: {
+    margin: 10,
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  title__description: {
+    marginBottom: 10,
+    fontWeight: "bold",
+  },
+  search__view: {
+    margin: 30,
+    borderRadius: 5,
+    shadowRadius: 15,
+    shadowOffset: { width: 15, height: 15 },
+    shadowOpacity: 0.3,
+    elevation: 15,
+  },
+  symptoms__view: {
     padding: 16,
     height: 100,
     width: Dimensions.get("window").width / 2,
@@ -134,11 +158,12 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 5, height: 5 },
     shadowOpacity: 0.5,
   },
-  requirementsView: {
+  requirements__view: {
     padding: 16,
     height: 90,
-    width: Dimensions.get("window").width / 4,
+    width: Dimensions.get("window").width / 5,
     borderRadius: 10,
+    alignItems: "center",
     /* iOS filter: drop-shadow */
     shadowColor: "rgba(0, 0, 0, 0.5))",
     shadowRadius: 15,
@@ -151,11 +176,17 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
   },
-  viewframe1: {
+  section__titles: {
+    margin: 10,
+    fontWeight: "bold",
+  },
+  frame1__view: {
     width: Dimensions.get("window").width,
     alignItems: "center",
+    justifyContent: "center",
+    flexWrap: "wrap",
   },
-  frame1: {
+  frame1__lineargradientview: {
     padding: 8,
     width: Dimensions.get("screen").width,
     elevation: 4,
@@ -166,7 +197,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     opacity: 0.9,
     // ---
-    margin: 30,
+    marginVertical: 30,
     /* iOS filter: drop-shadow */
     shadowColor: "rgba(0, 0, 0, 0.5))",
     shadowRadius: 15,
@@ -175,7 +206,12 @@ const styles = StyleSheet.create({
     // Android
     elevation: 5,
   },
-  buttonText: {
+  frame1__text: {
+    color: "white",
+    fontWeight: "bold",
+    marginBottom: 30,
+  },
+  button__text: {
     fontSize: 16,
     lineHeight: 21,
     fontWeight: "bold",
@@ -189,10 +225,11 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     backgroundColor: "grey",
   },
-  buttonsview: {
+  buttons__view: {
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "space-evenly",
+    margin: 20,
   },
 });
 
