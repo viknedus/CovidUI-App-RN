@@ -11,7 +11,8 @@ import {
   ScrollView,
 } from "react-native";
 // local
-import { TextInput, Surface } from "react-native-paper";
+import { TextInput } from "react-native-paper";
+import { LinearGradient } from "expo-linear-gradient";
 // dependencies
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -59,7 +60,10 @@ function DetailsScreen({ navigation }) {
           />
         </View>
 
-        <Surface style={styles.surface}>
+        <LinearGradient
+          style={styles.frame1}
+          colors={["rgba(43, 14, 14, 1) 0%)", "rgba(82, 36, 36, 0) 100%)"]}
+        >
           <Text>Stay at home to stop corona virus</Text>
           <Pressable style={styles.button}>
             <Text style={styles.buttonText}>Know More</Text>
@@ -68,7 +72,7 @@ function DetailsScreen({ navigation }) {
             style={{ width: 100, height: 100 }}
             source={require("../assets/home/man.png")}
           />
-        </Surface>
+        </LinearGradient>
 
         <Text>Requirements</Text>
         <View>
@@ -120,16 +124,23 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
   },
-  surface: {
-    backgroundColor: "grey",
+  frame1: {
     padding: 8,
     width: Dimensions.get("window").width,
     alignItems: "center",
     justifyContent: "space-evenly",
     elevation: 4,
+    // ---
     borderRadius: 10,
+    opacity: 0.5,
+    // ---
     marginLeft: 20,
     marginRight: 20,
+    /* iOS filter: drop-shadow */
+    shadowColor: "rgba(0, 0, 0, 0.5))",
+    shadowRadius: 15,
+    shadowOffset: { width: 5, height: 5 },
+    shadowOpacity: 0.5,
   },
   buttonText: {
     fontSize: 16,
