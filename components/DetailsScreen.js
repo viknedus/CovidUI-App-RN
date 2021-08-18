@@ -184,7 +184,6 @@ const styles = StyleSheet.create({
     width: Dimensions.get("window").width,
     alignItems: "center",
     justifyContent: "center",
-    flexWrap: "wrap",
   },
   frame1__lineargradientview: {
     padding: 8,
@@ -198,6 +197,7 @@ const styles = StyleSheet.create({
     opacity: 0.9,
     // ---
     marginVertical: 30,
+    marginHorizontal: 30,
     /* iOS filter: drop-shadow */
     shadowColor: "rgba(0, 0, 0, 0.5))",
     shadowRadius: 15,
