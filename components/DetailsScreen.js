@@ -17,21 +17,31 @@ import { LinearGradient } from "expo-linear-gradient";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const _renderItem = ({ item }) => (
-  <View style={styles.symptomsView}>
-    <Text style={{ color: "white" }}>{item.key}</Text>
-    <Image
-      style={{ width: 50, height: 50 }}
-      source={require("../assets/favicon.png")}
-    />
+  <View>
+    <LinearGradient
+      style={styles.symptomsView}
+      colors={["rgba(4, 26, 84, 1) 0%)", "rgba(82, 36, 36, 0) 100%)"]}
+    >
+      <Text style={{ color: "white" }}>{item.key}</Text>
+      <Image
+        style={{ width: 50, height: 50 }}
+        source={require("../assets/favicon.png")}
+      />
+    </LinearGradient>
   </View>
 );
 
 const _renderItems1 = ({ item }) => (
-  <View style={styles.requirementsView}>
-    <Image
-      style={{ width: 50, height: 50 }}
-      source={require("../assets/favicon.png")}
-    />
+  <View>
+    <LinearGradient
+      style={styles.requirementsView}
+      colors={["rgba(43, 14, 14, 1) 0%)", "rgba(82, 36, 36, 0) 100%)"]}
+    >
+      <Image
+        style={{ width: 50, height: 50 }}
+        source={require("../assets/favicon.png")}
+      />
+    </LinearGradient>
   </View>
 );
 
@@ -39,62 +49,70 @@ function DetailsScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
-        <View>
-          <Text>Hi, Stranger</Text>
+        <View style={{ marginBottom: 10 }}>
+          <Text style={{ marginBottom: 10 }}>Hi, Stranger</Text>
           <Text>Welcome to my youtube channel</Text>
         </View>
         {/* <TextInput style={styles.input} placeholder="search" inlineImageLeft="" /> */}
         <TextInput
           label="Search"
           right={<TextInput.Icon name="arrow-right-box" />}
+          style={{ marginBottom: 10 }}
         />
-        <Text>Symptoms</Text>
-        <View>
+        <Text style={{ marginBottom: 10 }}>Symptoms</Text>
+        <View style={{ marginBottom: 10 }}>
           <FlatList
             data={[{ key: "1" }, { key: "2" }, { key: "3" }]}
             renderItem={_renderItem}
             horizontal={true}
-            showsHorizontalScrollIndicator={true}
             alwaysBounceHorizontal
-            ItemSeparatorComponent={() => <View style={{ margin: 4 }} />}
+            ItemSeparatorComponent={() => <View style={{ margin: 6 }} />}
           />
         </View>
+        <View style={styles.viewframe1}>
+          <LinearGradient
+            style={styles.frame1}
+            colors={["rgba(43, 84, 4, 31) 0%)", "rgba(82, 36, 36, 0) 100%)"]}
+          >
+            <View>
+              <Text
+                style={{ color: "white", fontWeight: "bold", marginBottom: 30 }}
+              >
+                Stay at home to stop corona virus
+              </Text>
+              <Pressable style={styles.pressable}>
+                <Text style={styles.buttonText}>Know More</Text>
+              </Pressable>
+            </View>
 
-        <LinearGradient
-          style={styles.frame1}
-          colors={["rgba(43, 14, 14, 1) 0%)", "rgba(82, 36, 36, 0) 100%)"]}
-        >
-          <Text>Stay at home to stop corona virus</Text>
-          <Pressable style={styles.button}>
-            <Text style={styles.buttonText}>Know More</Text>
-          </Pressable>
-          <Image
-            style={{ width: 100, height: 100 }}
-            source={require("../assets/home/man.png")}
-          />
-        </LinearGradient>
+            <Image
+              style={{ width: 100, height: 100 }}
+              source={require("../assets/home/man.png")}
+            />
+          </LinearGradient>
+        </View>
 
-        <Text>Requirements</Text>
-        <View>
+        <Text style={{ marginBottom: 10 }}>Requirements</Text>
+        <View style={{ marginBottom: 30 }}>
           <FlatList
             data={[{ key: "1" }, { key: "2" }, { key: "3" }, { key: "4" }]}
             renderItem={_renderItems1}
             horizontal={true}
-            showsHorizontalScrollIndicator={true}
             alwaysBounceHorizontal
             ItemSeparatorComponent={() => <View style={{ margin: 8 }} />}
           />
         </View>
-
-        <Button
-          title="Go to Details... again"
-          onPress={() => navigation.push("Details")}
-        />
-        <Button
-          title="Go to Home"
-          onPress={() => navigation.navigate("Home")}
-        />
-        <Button title="Go back" onPress={() => navigation.goBack()} />
+        <View style={styles.buttonsview}>
+          <Button
+            title="Go to Details... again"
+            onPress={() => navigation.push("Details")}
+          />
+          <Button
+            title="Go to Home"
+            onPress={() => navigation.navigate("Home")}
+          />
+          <Button title="Go back" onPress={() => navigation.goBack()} />
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -103,20 +121,29 @@ function DetailsScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    width: Dimensions.get("window").width,
   },
   symptomsView: {
     padding: 16,
-    backgroundColor: "blue",
     height: 100,
     width: Dimensions.get("window").width / 2,
     borderRadius: 10,
+    /* iOS filter: drop-shadow */
+    shadowColor: "rgba(0, 0, 0, 0.5))",
+    shadowRadius: 15,
+    shadowOffset: { width: 5, height: 5 },
+    shadowOpacity: 0.5,
   },
   requirementsView: {
     padding: 16,
-    backgroundColor: "blue",
     height: 90,
     width: Dimensions.get("window").width / 4,
     borderRadius: 10,
+    /* iOS filter: drop-shadow */
+    shadowColor: "rgba(0, 0, 0, 0.5))",
+    shadowRadius: 15,
+    shadowOffset: { width: 5, height: 5 },
+    shadowOpacity: 0.5,
   },
   input: {
     height: 40,
@@ -124,23 +151,29 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
   },
-  frame1: {
-    padding: 8,
+  viewframe1: {
     width: Dimensions.get("window").width,
     alignItems: "center",
-    justifyContent: "space-evenly",
+  },
+  frame1: {
+    padding: 8,
+    width: Dimensions.get("screen").width,
     elevation: 4,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-evenly",
     // ---
     borderRadius: 10,
-    opacity: 0.5,
+    opacity: 0.9,
     // ---
-    marginLeft: 20,
-    marginRight: 20,
+    margin: 30,
     /* iOS filter: drop-shadow */
     shadowColor: "rgba(0, 0, 0, 0.5))",
     shadowRadius: 15,
     shadowOffset: { width: 5, height: 5 },
     shadowOpacity: 0.5,
+    // Android
+    elevation: 5,
   },
   buttonText: {
     fontSize: 16,
@@ -149,16 +182,17 @@ const styles = StyleSheet.create({
     letterSpacing: 0.25,
     color: "black",
   },
-  button: {
-    alignItems: "flex-start",
-    flexDirection: "row",
-    flexWrap: "nowrap",
-    justifyContent: "space-between",
+  pressable: {
+    alignItems: "center",
     paddingVertical: 10,
     paddingHorizontal: 55,
     borderRadius: 5,
-    elevation: 3,
-    backgroundColor: "pink",
+    backgroundColor: "grey",
+  },
+  buttonsview: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-evenly",
   },
 });
 
