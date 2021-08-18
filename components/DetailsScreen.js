@@ -11,7 +11,7 @@ import {
   ScrollView,
 } from "react-native";
 // local
-import { TextInput, Card } from "react-native-paper";
+import { TextInput, Surface } from "react-native-paper";
 // dependencies
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -59,13 +59,16 @@ function DetailsScreen({ navigation }) {
           />
         </View>
 
-        <Card>
+        <Surface style={styles.surface}>
           <Text>Stay at home to stop corona virus</Text>
-          <Pressable>
-            <Text>Know More</Text>
+          <Pressable style={styles.button}>
+            <Text style={styles.buttonText}>Know More</Text>
           </Pressable>
-          <Image source={require("../assets/home/man.png")} />
-        </Card>
+          <Image
+            style={{ width: 100, height: 100 }}
+            source={require("../assets/home/man.png")}
+          />
+        </Surface>
 
         <Text>Requirements</Text>
         <View>
@@ -116,6 +119,35 @@ const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     padding: 10,
+  },
+  surface: {
+    backgroundColor: "grey",
+    padding: 8,
+    width: Dimensions.get("window").width,
+    alignItems: "center",
+    justifyContent: "space-evenly",
+    elevation: 4,
+    borderRadius: 10,
+    marginLeft: 20,
+    marginRight: 20,
+  },
+  buttonText: {
+    fontSize: 16,
+    lineHeight: 21,
+    fontWeight: "bold",
+    letterSpacing: 0.25,
+    color: "black",
+  },
+  button: {
+    alignItems: "flex-start",
+    flexDirection: "row",
+    flexWrap: "nowrap",
+    justifyContent: "space-between",
+    paddingVertical: 10,
+    paddingHorizontal: 55,
+    borderRadius: 5,
+    elevation: 3,
+    backgroundColor: "pink",
   },
 });
 
