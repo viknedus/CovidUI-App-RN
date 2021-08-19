@@ -181,13 +181,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   frame1__view: {
-    width: Dimensions.get("window").width,
     alignItems: "center",
     justifyContent: "center",
   },
   frame1__lineargradientview: {
-    padding: 8,
-    width: Dimensions.get("screen").width,
+    padding: 15,
     elevation: 4,
     flexDirection: "row",
     flexWrap: "wrap",
@@ -197,7 +195,7 @@ const styles = StyleSheet.create({
     opacity: 0.9,
     // ---
     marginVertical: 30,
-    marginHorizontal: 30,
+    marginHorizontal: 20,
     /* iOS filter: drop-shadow */
     shadowColor: "rgba(0, 0, 0, 0.5))",
     shadowRadius: 15,
@@ -209,21 +207,22 @@ const styles = StyleSheet.create({
   frame1__text: {
     color: "white",
     fontWeight: "bold",
-    marginBottom: 30,
+    margin: 20,
   },
   button__text: {
     fontSize: 16,
     lineHeight: 21,
     fontWeight: "bold",
     letterSpacing: 0.25,
-    color: "black",
+    color: "white",
   },
   pressable: {
     alignItems: "center",
     paddingVertical: 10,
-    paddingHorizontal: 55,
+    paddingHorizontal: 15,
     borderRadius: 5,
-    backgroundColor: "grey",
+    backgroundColor: "lightgreen",
+    margin: 20,
   },
   buttons__view: {
     flexDirection: "row",

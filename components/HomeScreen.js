@@ -17,7 +17,7 @@ function HomeScreen({ navigation }) {
     <SafeAreaView style={styles.container}>
       <LinearGradient
         style={styles.backgroundColor}
-        colors={["rgba(43, 84, 4, 31) 70%)", "rgba(82, 36, 36, 0) 50%)"]}
+        colors={["rgba(0,0,0,0.8)", "transparent"]}
       >
         <View style={styles.top}>
           <Image
@@ -60,11 +60,16 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  backgroundColor: {
     alignItems: "center",
     justifyContent: "space-between",
+    backgroundColor: "orange",
+  },
+  backgroundColor: {
     height: Dimensions.get("window").height,
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: 0,
   },
   top: {
     flex: 0.6,
@@ -89,12 +94,17 @@ const styles = StyleSheet.create({
   button: {
     alignItems: "flex-start",
     flexDirection: "row",
-    flexWrap: "nowrap",
     justifyContent: "space-between",
     paddingVertical: 10,
-    paddingHorizontal: 55,
+    paddingHorizontal: 25,
+    marginHorizontal: 35,
     borderRadius: 5,
-    elevation: 3,
+    elevation: 6,
     backgroundColor: "white",
+    // ---
+    shadowColor: "rgba(0, 0, 0, 0.9))",
+    shadowRadius: 15,
+    shadowOffset: { width: 5, height: 5 },
+    shadowOpacity: 0.5,
   },
 });
