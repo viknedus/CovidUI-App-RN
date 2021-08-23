@@ -52,7 +52,7 @@ function DetailsScreen({ navigation }) {
         <View style={styles.title__view}>
           <Text style={styles.title__text}>Hi, Stranger</Text>
           <Text style={styles.title__description}>
-            Welcome to my youtube channel
+            Things to do to avoid covid
           </Text>
         </View>
         {/* <TextInput style={styles.input} placeholder="search" inlineImageLeft="" /> */}
